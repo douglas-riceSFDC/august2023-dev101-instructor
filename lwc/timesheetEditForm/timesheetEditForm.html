@@ -1,0 +1,36 @@
+<template>
+    <lightning-button label="Create New Timesheet" 
+                        onclick={toggleModal}
+    ></lightning-button>
+
+    <template if:true={modalShown}>
+        <section class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__close">
+                    <lightning-icon icon-name="utility:close" style="cursor: pointer"
+                                        variant="inverse"
+                                        size="x-small"
+                                        onclick={toggleModal}
+                    ></lightning-icon>
+                </div>
+                <div class="slds-modal__header">
+                    Create New Timesheet
+                </div>
+                <div class="slds-modal__content">
+                    <lightning-record-edit-form object-api-name="Timesheet__c">
+                        <lightning-input-field field-name="Status__c"></lightning-input-field>
+                        <lightning-input-field field-name="Hours__c"></lightning-input-field>
+                        <lightning-input-field field-name="Project__c"></lightning-input-field>    
+                
+                        <lightning-button class="slds-var-p-left_small" label="Save" type="submit"></lightning-button>
+                    </lightning-record-edit-form>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={toggleModal}></lightning-button>
+                </div>
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

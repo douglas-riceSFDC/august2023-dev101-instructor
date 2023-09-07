@@ -1,0 +1,22 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <!-- <template for:each={timesheets} for:item="timesheet">
+        <div key={timesheet.Id}>
+            {timesheet.Name} - {timesheet.Hours__c}
+        </div>
+    </template>     -->
+
+    <lightning-datatable key-field="Id"
+                            data={timesheets}
+                            columns={columns}
+                            onrowselection={handleRowSelection}
+    ></lightning-datatable>
+
+    <lightning-button label="Approve"
+                        onclick={approveSelectedTimesheets}
+    ></lightning-button>
+    <lightning-button label="Reject"
+                        onclick={rejectSelectedTimesheets}
+    ></lightning-button>
+
+</template>
