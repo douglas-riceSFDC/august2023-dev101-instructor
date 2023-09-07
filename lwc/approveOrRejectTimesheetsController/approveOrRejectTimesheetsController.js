@@ -4,10 +4,16 @@ import getRelatedTimesheets from '@salesforce/apex/ApproveOrRejectTimesheetsCont
 import approveTimesheets from '@salesforce/apex/ApproveOrRejectTimesheetsController.approveTimesheets';
 import rejectTimesheets from '@salesforce/apex/ApproveOrRejectTimesheetsController.rejectTimesheets';
 
+import { subscribe, MessageContext } from 'lightning/messageService';
+import newTimesheets from '@salesforce/messageChannel/NewTimesheets__c';
+
 export default class ApproveOrRejectTimesheetsController extends LightningElement {
     @api recordId;
     fetchedTimesheets;
     wiredResponse;
+
+    @wire(MessageContext)
+    messageContext;
 
     @wire(getRelatedTimesheets, { projectId: '$recordId'})
     wiredTimesheets(response) {
@@ -19,7 +25,11 @@ export default class ApproveOrRejectTimesheetsController extends LightningElemen
     }
 
     connectedCallback() {
+        subscribe(this.messageContext, newTimesheets, msg => {
+            console.log(msg);
 
+            refreshApex(this.wiredResponse);
+        });
     }
 
     handleApproval(event) {

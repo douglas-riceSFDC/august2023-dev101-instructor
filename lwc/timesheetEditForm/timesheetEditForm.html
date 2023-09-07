@@ -17,7 +17,7 @@
                     Create New Timesheet
                 </div>
                 <div class="slds-modal__content">
-                    <lightning-record-edit-form object-api-name="Timesheet__c">
+                    <lightning-record-edit-form object-api-name="Timesheet__c" onsuccess={handleFormSuccess}>
                         <lightning-input-field field-name="Status__c"></lightning-input-field>
                         <lightning-input-field field-name="Hours__c"></lightning-input-field>
                         <lightning-input-field field-name="Project__c"></lightning-input-field>    
